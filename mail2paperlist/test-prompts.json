@@ -1,0 +1,27 @@
+[
+  {
+    "name": "scholar-alert-board",
+    "prompt": "Use Mail2PaperList to turn these Google Scholar alerts into a filterable paper board with source links and relevance.",
+    "expected": "Triggers `mail2paperlist`, keeps mailbox handling read-only, checkpoints extraction, verifies paper sources, and produces a paper-board plan or artifact."
+  },
+  {
+    "name": "webmail-academic-triage",
+    "prompt": "Triage my academic webmail alerts into papers only, skip invoices and travel messages, and make an HTML reading board.",
+    "expected": "Uses `mail2paperlist`, separates academic paper leads from non-paper mail, records side-effect boundaries, and builds a source-checked board."
+  },
+  {
+    "name": "resume-checkpoint",
+    "prompt": "Resume the previous mail-to-paper-list checkpoint and finish enriching the remaining papers.",
+    "expected": "Uses `mail2paperlist`, locates checkpoint state, resumes by stable message or paper key, and reruns final validation."
+  },
+  {
+    "name": "non-trigger-email-reply",
+    "prompt": "Draft a polite reply to this professor's email.",
+    "expected": "Does not trigger `mail2paperlist`; routes to an email drafting workflow."
+  },
+  {
+    "name": "non-trigger-single-paper",
+    "prompt": "Explain this one arXiv paper section by section.",
+    "expected": "Does not trigger `mail2paperlist`; routes to paper explanation or literature-reading workflow."
+  }
+]

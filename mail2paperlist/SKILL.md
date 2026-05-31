@@ -74,7 +74,13 @@ Confirm or infer:
 - output formats
 - whether source links should be opened for verification
 
-Create a timestamped output prefix before collecting data.
+Create a timestamped output prefix before collecting data. On this Mac, default
+private runs to:
+
+`/Users/andyl/Documents/Obsidian/Research/07_Mail2PaperList/runs/<run-id>/`
+
+Keep the run payload out of git, with only a lightweight Obsidian index tracked
+when the user wants vault visibility.
 
 ### 2. Run A Small Dry Run
 
@@ -238,10 +244,11 @@ Do not download PDFs, sync Zotero, or ingest full text by default.
 
 Recommended private run artifacts:
 
-- `*.checkpoint.jsonl` for batch progress
-- `*.enriched.json` for normalized paper records
-- `*.md` for summary notes
-- `*.html` for the board
+- `boards/` for HTML and Markdown views
+- `data/` for `*.checkpoint.jsonl`, `*.enriched.json`, and other normalized records
+- `scripts/` for run-specific generators or rewrite helpers
+- `qa/` for screenshots and visual checks
+- `backups/` for generated `.bak-*` files
 - optional `visible-text.md` for final text audit
 
 Public packages must not include user-specific run artifacts.

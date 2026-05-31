@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 - 2026-05-31
+
+- Documented the local Obsidian run-artifact layout for private Mail2PaperList outputs.
+
 ## 0.2.0 - 2026-05-31
 
 - Added optional multi-source corroboration guidance.

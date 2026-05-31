@@ -14,6 +14,17 @@ Record the user-visible goal:
 - output location
 - required final formats
 
+On Mingdao's Mac, use this default private run root unless the user specifies a
+different location:
+
+```text
+/Users/andyl/Documents/Obsidian/Research/07_Mail2PaperList/runs/<run-id>/
+```
+
+Inside a run, use `boards/`, `data/`, `scripts/`, `qa/`, and `backups/`.
+If the run lives in the Obsidian vault, keep `runs/` ignored by git and track
+only a lightweight index note.
+
 Default side effects:
 
 - read pages and visible message content

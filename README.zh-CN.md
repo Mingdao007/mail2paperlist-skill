@@ -42,6 +42,7 @@ Codex App 安装目标：
 - 默认只读 webmail；不删除、不归档、不回复、不转发、不下载附件、不退订。
 - 任何会改变邮箱状态的操作都需要用户明确授权。
 - 多源搜索、PDF lookup、Zotero export、最近 N 天补搜都是可选扩展，不是默认副作用。
+- 私人运行产物建议放在本地 Obsidian 专用 run 目录，并让 `runs/` 保持 git ignored。
 
 ## 参考项目
 

@@ -60,6 +60,7 @@ flowchart LR
 - optional selected-paper deepening for OA lookup, Zotero export, or evidence chunks
 - checkpoint/resume behavior for long runs
 - visible-text extraction for final audit gates
+- local run layout guidance for keeping private artifacts outside the public skill package
 
 ## Related Tools / Inspiration
 

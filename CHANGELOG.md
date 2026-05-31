@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0 - 2026-05-31
+
+- Added optional multi-source corroboration guidance.
+- Added source confidence, dedupe, recent-window supplement, and selected-paper deepening boundaries.
+- Added related-tool inspiration notes without adding dependencies.
+- Expanded trigger and non-trigger prompt coverage.
+
 ## 0.1.0 - 2026-05-31
 
 - Initial public release of Mail2PaperList.

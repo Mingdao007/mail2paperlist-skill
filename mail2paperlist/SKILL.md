@@ -31,6 +31,10 @@ Use this skill when the user asks to:
 - turn paper alert emails into a reading list
 - build a filterable HTML board from email paper leads
 - enrich email paper leads with source links, topics, summaries, or relevance
+- confirm paper sources across arXiv, DOI, OpenAlex, Semantic Scholar, DBLP, or similar public metadata sources
+- deduplicate alert papers by DOI, arXiv ID, or normalized title
+- supplement a mail-derived board with recent-window paper discovery when the user explicitly asks
+- deepen only selected papers with OA PDF lookup, Zotero export, or evidence chunks
 - resume a previous mailbox-to-paper-board checkpoint
 
 Do not use this skill for:
@@ -40,6 +44,8 @@ Do not use this skill for:
 - unsubscribe, delete, archive, or report-spam tasks
 - single-paper explanation only
 - Zotero library maintenance only
+- broad autonomous literature review reports without an email or alert-derived paper corpus
+- PDF downloading or full-text ingestion as the default task
 
 ## Privacy And Side-Effect Boundary
 
@@ -120,7 +126,35 @@ Mark each source:
 
 Do not invent source details behind paywalls or blocked pages.
 
-### 5. Summarize Without Filler
+### 5. Optionally Corroborate Across Sources
+
+Use this stage only when the user asks for stronger source confidence, dedupe,
+recent coverage, or selected-paper deepening.
+
+Recommended source roles:
+
+- arXiv: preprint identity and abstract
+- DOI/Crossref: publisher identity and DOI metadata
+- OpenAlex: work-level metadata, concepts, venue, and citation signals
+- Semantic Scholar: abstracts, citation data, and related work signals
+- DBLP: CS venue and author disambiguation when available
+- Unpaywall: open-access landing page or PDF availability
+
+Add these optional fields when corroboration is performed:
+
+- `dedupe_key`: DOI first, then arXiv ID, then normalized title
+- `source_candidates`: source, ID, title, authors, year, URL, and confidence note
+- `source_corroboration`: `single_source`, `multi_source`, `conflict`, or `unresolved`
+- `corroboration_count`: count of independent trusted matches
+- `source_confidence`: `high`, `medium`, or `low`
+
+Keep `source_confidence` separate from paper `relevance`. A paper can have a
+reliable source and still be low relevance for the user.
+
+If multiple sources disagree on title, authors, year, DOI, or arXiv ID, keep the
+paper but mark `source_corroboration: conflict` and surface the mismatch.
+
+### 6. Summarize Without Filler
 
 For each paper, write concise Chinese or user-requested-language summaries.
 
@@ -138,7 +172,7 @@ Rules:
 
 Run an AI-smell or redundancy gate on the visible final text when available.
 
-### 6. Classify For Screening
+### 7. Classify For Screening
 
 Use stable, user-visible taxonomy labels.
 
@@ -162,12 +196,13 @@ Recommended robotics-oriented default labels:
 Assign one primary topic and up to two secondary topics. Relevance should be
 explicit and user-adjustable.
 
-### 7. Build The Board
+### 8. Build The Board
 
 The board should support:
 
 - search over title, author, summary, and source
 - filters for relevance, source status, source host, alert, and arXiv
+- optional filters for source confidence and corroboration count
 - sorting by date and relevance
 - compact/folded rows for low-interest papers
 - source links and source status
@@ -175,6 +210,29 @@ The board should support:
 - checkpoint/resume provenance
 
 Do not add a marketing landing page. Open directly into the usable board.
+
+### 9. Optional Recent-Window Supplement
+
+Use recent-window discovery only when the user asks to catch papers that did
+not arrive by email.
+
+- Search recent papers by selected topics, alert owner names, keywords, or seed
+  titles from the board.
+- Default to a bounded window such as the last 30 days unless the user gives a
+  different range.
+- Dedupe against the mail-derived corpus before adding candidates.
+- Mark added papers as external supplement records so they do not appear to
+  have come from the mailbox.
+
+### 10. Optional Selected-Paper Deepening
+
+Only after the user has selected or prioritized papers:
+
+- resolve open-access PDF or landing page when useful
+- export selected paper metadata to Zotero-compatible formats if requested
+- extract short evidence chunks from accessible abstracts or PDFs
+
+Do not download PDFs, sync Zotero, or ingest full text by default.
 
 ## Artifact Guidance
 
@@ -196,6 +254,7 @@ Before reporting completion:
 - no non-academic mail is mixed in
 - source status statistics are visible
 - all records have title, source status, topic, relevance, and summary
+- source confidence is present when multi-source corroboration was requested
 - unread/read side effects match the user's permission
 - HTML opens locally without network dependencies when possible
 - search, filters, sorting, and folding still work

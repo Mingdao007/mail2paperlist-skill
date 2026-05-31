@@ -88,7 +88,39 @@ Status values:
 
 Do not claim an arXiv source unless a real arXiv ID is confirmed.
 
-## 6. Enrichment
+## 6. Optional Multi-Source Corroboration
+
+Run this step when the user asks for stronger source verification, better
+dedupe, or coverage beyond the original alert emails.
+
+Recommended lookup order:
+
+1. arXiv ID or DOI already visible in the alert.
+2. Exact title lookup in arXiv, Crossref, OpenAlex, Semantic Scholar, DBLP, or
+   publisher metadata.
+3. Author/year/title fuzzy match only when exact identifiers are absent.
+4. Unpaywall or publisher links for open-access availability when the user
+   asks for selected-paper deepening.
+
+Dedupe key preference:
+
+- DOI
+- arXiv ID
+- OpenReview forum ID or publisher stable ID
+- normalized title with year as a tie-breaker
+
+Record corroboration separately from user relevance:
+
+- `source_confidence`: source metadata confidence, not paper importance
+- `source_corroboration`: `single_source`, `multi_source`, `conflict`, or
+  `unresolved`
+- `corroboration_count`: independent trusted sources that agree
+- `source_candidates`: the candidates considered and why the winner was chosen
+
+If sources conflict, keep the paper, show the conflict, and avoid silently
+choosing the most convenient link.
+
+## 7. Enrichment
 
 Each paper record should include:
 
@@ -98,6 +130,7 @@ Each paper record should include:
 - venue or source metadata
 - source URL and source host
 - source status
+- optional source confidence and corroboration fields
 - relevance
 - primary topic and secondary topics
 - summary
@@ -108,7 +141,34 @@ Summaries should be concrete and evidence-based. Prefer fewer sentences over
 padding. For high-priority papers, allow more detail only when the source
 abstract supports it.
 
-## 7. Board UX
+## 8. Recent-Window Supplements
+
+Use this only when the user asks whether the mailbox missed recent papers.
+
+- Build search queries from selected topics, alert owners, high-relevance
+  titles, or user-provided keywords.
+- Default to a bounded recent window such as 30 days.
+- Search public metadata sources before broad web search.
+- Dedupe against the mail-derived corpus before adding anything.
+- Mark added papers as `external supplement`, not as mailbox records.
+
+## 9. Selected-Paper Deepening
+
+Use this only after screening has produced selected or high-priority papers.
+
+Allowed selected-paper actions with explicit user intent:
+
+- open-access PDF or landing-page resolution
+- Zotero-compatible metadata export
+- short evidence chunks from accessible abstracts or PDFs
+
+Still avoid by default:
+
+- downloading PDFs for every paper
+- full-text ingestion for low-interest records
+- Sci-Hub, LibGen, credentialed publisher scraping, or browser-profile access
+
+## 10. Board UX
 
 For dense paper screening, the board should prioritize:
 
@@ -116,6 +176,7 @@ For dense paper screening, the board should prioritize:
 - relevance filter
 - source-status filter
 - source-host filter
+- source-confidence filter when corroboration was run
 - alert-owner filter
 - arXiv filter
 - date and relevance sorting
@@ -130,7 +191,7 @@ Folded rows should preserve enough context to decide whether to reopen:
 - relevance
 - alert owner
 
-## 8. Final Audit
+## 11. Final Audit
 
 Before handoff:
 
@@ -141,6 +202,7 @@ Before handoff:
 - grep for known filler phrases
 - run an AI-smell gate on visible text when requested
 - sample-check source links and high-relevance summaries
+- if corroboration was run, sample-check conflicts and high-confidence claims
 
 For public packages or shared artifacts, run a privacy check for:
 
@@ -151,7 +213,7 @@ For public packages or shared artifacts, run a privacy check for:
 - user-specific output paths
 - generated private paper boards
 
-## 9. Resume Rules
+## 12. Resume Rules
 
 If interrupted:
 

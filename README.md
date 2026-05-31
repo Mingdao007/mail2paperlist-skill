@@ -44,18 +44,37 @@ flowchart LR
     A["Academic mailbox or alert export"] --> B["Read-only triage"]
     B --> C["Paper extraction"]
     C --> D["Source verification"]
-    D --> E["Topic and relevance board"]
-    E --> F["AI-smell and QA gate"]
+    D --> E["Optional source corroboration"]
+    E --> F["Topic and relevance board"]
+    F --> G["AI-smell and QA gate"]
 ```
 
 ## Coverage
 
 - read-only webmail triage with explicit side-effect boundaries
 - paper source normalization and verification
+- optional multi-source corroboration, dedupe, and source confidence
 - topic and relevance classification for paper screening
 - filterable HTML or Markdown board generation
+- optional recent-window supplements when the user asks for coverage beyond mail
+- optional selected-paper deepening for OA lookup, Zotero export, or evidence chunks
 - checkpoint/resume behavior for long runs
 - visible-text extraction for final audit gates
+
+## Related Tools / Inspiration
+
+These projects informed the optional v0.2 workflow patterns. This repository
+does not vendor their code or require their dependencies.
+
+| Project | Useful pattern |
+| --- | --- |
+| [`scholar-megasearch`](https://github.com/TaewoooPark/scholar-megasearch) | multi-source fan-out, dedupe, and rank-by-corroboration ideas |
+| [`paper-search-mcp`](https://github.com/openags/paper-search-mcp) | clear source roles for Crossref, OpenAlex, Semantic Scholar, Unpaywall, and similar metadata sources |
+| [`paper-pilot`](https://github.com/aytzey/paper-pilot) | selected-paper OA lookup, evidence chunks, and Zotero-adjacent workflows |
+| [`research30`](https://github.com/shandley/research30) | bounded recent-window discovery for newly published papers |
+| [`Academix`](https://github.com/xingyulu23/Academix) and [`PyAlex`](https://github.com/J535D165/pyalex) | OpenAlex-centered metadata and citation workflows |
+| [`ai-research-radar`](https://github.com/mlnjsh/ai-research-radar) | scheduled radar-style updates |
+| [`arxiv-zotero-connector`](https://github.com/StepanKropachev/arxiv-zotero-connector) | narrow arXiv-to-Zotero transfer boundaries |
 
 ## Expected Result / Verification
 
@@ -86,6 +105,7 @@ This public repository keeps the workflow generic and reusable.
 - It does not include any private mailbox data, cookies, local browser profile state, generated paper lists, or user-specific output files.
 - Webmail actions are documented as read-only by default.
 - Mark-as-read, downloads, deletions, replies, forwarding, unsubscribe actions, and mailbox reorganization are outside the default workflow unless the user explicitly authorizes them.
+- Multi-source search, PDF lookup, Zotero export, and recent-window supplements are optional extensions, not default side effects.
 
 ## Repository Layout
 

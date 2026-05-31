@@ -41,6 +41,21 @@ Codex App 安装目标：
 - 不包含私人邮箱数据、cookies、浏览器 profile、生成的 paper board、JSON/HTML 输出或用户本地路径。
 - 默认只读 webmail；不删除、不归档、不回复、不转发、不下载附件、不退订。
 - 任何会改变邮箱状态的操作都需要用户明确授权。
+- 多源搜索、PDF lookup、Zotero export、最近 N 天补搜都是可选扩展，不是默认副作用。
+
+## 参考项目
+
+这些项目只作为 workflow inspiration；本 repo 不复制它们的代码，也不绑定它们的依赖。
+
+| 项目 | 值得吸收的点 |
+| --- | --- |
+| [`scholar-megasearch`](https://github.com/TaewoooPark/scholar-megasearch) | 多源 fan-out、dedupe、corroboration ranking |
+| [`paper-search-mcp`](https://github.com/openags/paper-search-mcp) | Crossref、OpenAlex、Semantic Scholar、Unpaywall 等 source roles |
+| [`paper-pilot`](https://github.com/aytzey/paper-pilot) | selected papers 的 OA lookup、evidence chunks、Zotero-adjacent workflow |
+| [`research30`](https://github.com/shandley/research30) | 最近窗口补搜 |
+| [`Academix`](https://github.com/xingyulu23/Academix) 和 [`PyAlex`](https://github.com/J535D165/pyalex) | OpenAlex metadata / citation workflow |
+| [`ai-research-radar`](https://github.com/mlnjsh/ai-research-radar) | 定时 radar-style 更新 |
+| [`arxiv-zotero-connector`](https://github.com/StepanKropachev/arxiv-zotero-connector) | 窄范围 arXiv-to-Zotero transfer 边界 |
 
 ## 验证目标
 

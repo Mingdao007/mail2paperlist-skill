@@ -15,6 +15,21 @@
     "expected": "Uses `mail2paperlist`, locates checkpoint state, resumes by stable message or paper key, and reruns final validation."
   },
   {
+    "name": "multi-source-corroboration",
+    "prompt": "Use Mail2PaperList to confirm these Scholar alert papers across arXiv, OpenAlex, Semantic Scholar, and DOI metadata, then flag source conflicts.",
+    "expected": "Triggers `mail2paperlist`, treats multi-source lookup as optional source corroboration, keeps `source_confidence` separate from paper relevance, and records conflicts instead of silently choosing a source."
+  },
+  {
+    "name": "recent-window-supplement",
+    "prompt": "After building the mail-derived paper board, check whether the last 30 days have related papers we missed.",
+    "expected": "Triggers `mail2paperlist`, runs a bounded recent-window supplement only after the mail corpus is defined, dedupes against the board, and marks added records as external supplements."
+  },
+  {
+    "name": "selected-paper-deepening",
+    "prompt": "For the papers I selected in the board, find OA links and prepare Zotero-compatible metadata, but do not download everything.",
+    "expected": "Triggers `mail2paperlist`, applies selected-paper deepening only to selected records, and avoids default PDF download or full-text ingestion."
+  },
+  {
     "name": "non-trigger-email-reply",
     "prompt": "Draft a polite reply to this professor's email.",
     "expected": "Does not trigger `mail2paperlist`; routes to an email drafting workflow."
@@ -23,5 +38,15 @@
     "name": "non-trigger-single-paper",
     "prompt": "Explain this one arXiv paper section by section.",
     "expected": "Does not trigger `mail2paperlist`; routes to paper explanation or literature-reading workflow."
+  },
+  {
+    "name": "non-trigger-zotero-only",
+    "prompt": "Clean up duplicate items in my Zotero library and rename attachments.",
+    "expected": "Does not trigger `mail2paperlist`; routes to a Zotero library maintenance workflow."
+  },
+  {
+    "name": "non-trigger-pdf-only",
+    "prompt": "Download every PDF from this bibliography and put the files in a folder.",
+    "expected": "Does not trigger `mail2paperlist`; this is a PDF acquisition or file-management task unless it is explicitly tied to a mail-derived paper board."
   }
 ]

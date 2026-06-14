@@ -14,11 +14,11 @@ Record the user-visible goal:
 - output location
 - required final formats
 
-On Mingdao's Mac, use this default private run root unless the user specifies a
-different location:
+Bind a user-provided local private run root before creating a run. Under that
+root, use this relative layout unless the user specifies a different structure:
 
 ```text
-<local-private-run-root>/Mail2PaperList/runs/<run-id>/
+Mail2PaperList/runs/<run-id>/
 ```
 
 Inside a run, use `boards/`, `data/`, `scripts/`, `qa/`, and `backups/`.

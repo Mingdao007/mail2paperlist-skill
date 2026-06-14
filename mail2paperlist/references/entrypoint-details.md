@@ -93,10 +93,10 @@ Confirm or infer:
 - output formats
 - whether source links should be opened for verification
 
-Create a timestamped output prefix before collecting data. On this Mac, default
-private runs to:
+Create a timestamped output prefix before collecting data. Bind a user-provided
+local private run root first; under that root, create runs in:
 
-`<local-private-run-root>/Mail2PaperList/runs/<run-id>/`
+`Mail2PaperList/runs/<run-id>/`
 
 Keep the run payload out of git, with only a lightweight Obsidian index tracked
 when the user wants vault visibility.

@@ -18,7 +18,7 @@ On Mingdao's Mac, use this default private run root unless the user specifies a
 different location:
 
 ```text
-/Users/andyl/Documents/Obsidian/Research/07_Mail2PaperList/runs/<run-id>/
+<local-private-run-root>/Mail2PaperList/runs/<run-id>/
 ```
 
 Inside a run, use `boards/`, `data/`, `scripts/`, `qa/`, and `backups/`.

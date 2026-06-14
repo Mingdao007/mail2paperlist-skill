@@ -96,7 +96,7 @@ Confirm or infer:
 Create a timestamped output prefix before collecting data. On this Mac, default
 private runs to:
 
-`/Users/andyl/Documents/Obsidian/Research/07_Mail2PaperList/runs/<run-id>/`
+`<local-private-run-root>/Mail2PaperList/runs/<run-id>/`
 
 Keep the run payload out of git, with only a lightweight Obsidian index tracked
 when the user wants vault visibility.
